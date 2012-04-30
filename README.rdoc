@@ -1,3 +1,3 @@
-= Seed-Fu-ndo
+= Seed Fu ndo
 
-Seed-Fu-ndo adds undo functionality to Seed-Fu
+Seed Fu ndo adds undo functionality to Seed Fu

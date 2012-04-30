@@ -2,7 +2,6 @@ module SeedFu
   
   class Seeder
     
-    alias_method_chain :seed, :undo
     
     def seed_with_undo
       if r = SeedFuNdo.recorder
@@ -11,6 +10,7 @@ module SeedFu
         seed_without_undo
       end
     end
+    alias_method_chain :seed, :undo
     
     def unseed
       @model_class.transaction do
@@ -26,10 +26,10 @@ module SeedFu
 
         puts " - Remove #{@model_class} #{data.inspect}" unless @options[:quiet]
 
-        record.destroy || raise(ActiveRecord::RecordNotSaved)
+        record.destroy || raise(ActiveRecord::ActiveRecordError)
     end
     
-    def find_record
+    def find_record(data)
       @model_class.where(constraint_conditions(data)).first
     end
   end

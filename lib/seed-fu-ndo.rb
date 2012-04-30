@@ -1,5 +1,6 @@
 require 'seed-fu'
 require 'seed-fu-ndo/seeder'
+require 'seed-fu-ndo/railtie' if defined?(Rails) && Rails.version >= "3"
 
 module SeedFuNdo
   autoload :Recorder, 'seed-fu-ndo/recorder'

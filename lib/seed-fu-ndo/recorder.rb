@@ -12,8 +12,10 @@ module SeedFuNdo
     end
     
     def unseed
-      seeders.reverse.each do |seeder|
-        seeder.unseed
+      ActiveRecord::Base.transaction do 
+        seeders.reverse.each do |seeder|
+          seeder.unseed
+        end
       end
     end
     
