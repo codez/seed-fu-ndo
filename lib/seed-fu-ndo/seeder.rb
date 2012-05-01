@@ -6,6 +6,9 @@ module SeedFu
     def seed_with_undo
       if r = SeedFuNdo.recorder
         r.record self
+        
+        # return existing records in case they are processed by the caller
+        @data.map { |record_data| find_record(data) }
       else
         seed_without_undo
       end
@@ -26,7 +29,7 @@ module SeedFu
 
         puts " - Remove #{@model_class} #{data.inspect}" unless @options[:quiet]
 
-        record.destroy || raise(ActiveRecord::ActiveRecordError)
+        record.destroy || raise(ActiveRecord::ActiveRecordError(record.errors.full_messages.join(", ").presence))
     end
     
     def find_record(data)

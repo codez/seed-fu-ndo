@@ -1,4 +1,5 @@
 pkg
 .project
+.rvmrc
 *.log
 test.sqlite3
