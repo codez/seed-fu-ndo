@@ -8,7 +8,7 @@ module SeedFu
         r.record self
         
         # return existing records in case they are processed by the caller
-        @data.map { |record_data| find_record(data) }
+        @data.map { |record_data| find_record(record_data) }
       else
         seed_without_undo
       end
