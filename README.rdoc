@@ -1,6 +1,6 @@
 = Seed Fu-ndo
 
-Seed Fu-ndo adds undo functionality to Seed Fu. While Seed Fu solves the problem for inserting and maintaining seed data in a database, Seed Fu-ndo adds the possiblity to remove this data again.
+Seed Fu-ndo adds undo functionality to {Seed Fu}[http://github.com/mbleigh/seed-fu]. While Seed Fu solves the problem for inserting and maintaining seed data in a database, Seed Fu-ndo adds the possiblity to remove this data again.
 
 == How do I run it?
 
