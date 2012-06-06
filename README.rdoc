@@ -1,3 +1,17 @@
-= Seed Fu ndo
+= Seed Fu-ndo
 
-Seed Fu ndo adds undo functionality to Seed Fu
+Seed Fu-ndo adds undo functionality to Seed Fu. While Seed Fu solves the problem for inserting and maintaining seed data in a database, Seed Fu-ndo adds the possiblity to remove this data again.
+
+== How do I run it?
+
+Once you have your Seed Fu fixtures set up and seeded into the database, just run
+
+  rake db:unseed_fu
+  
+To unseed your data programmatically, there is an equivalent SeedFuNdo class
+
+  SeedFuNdo.unseed(fixture_paths, filter)
+
+== How does it work?
+
+The process is fairly simple: The Seed Fu fixtures are processed as usual but without actually inserting any data. Instead, the to-be-seeded records are simply recorded. When all files are processed, the recorded entries are destroyed in reverse order from the database. 

@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.version     = SeedFuNdo::VERSION
   s.authors     = ["Pascal Zumkehr"]
   s.email       = ["spam@codez.ch"]
-  #s.homepage    = "TODO"
-  s.summary     = "Seed Fu ndo adds undo functionality to Seed Fu"
-  s.description = ""
+  s.homepage    = "http://github.com/codez/seed-fu-ndo"
+  s.summary     = "Seed Fu-ndo adds undo functionality to Seed Fu"
+  s.description = "While Seed Fu solves the problem for inserting and maintaining seed data in a database, Seed Fu-ndo adds the possiblity to remove this data again."
 
   s.files = Dir["{lib}/**/*"] + ["Rakefile"]
   s.test_files = Dir["spec/**/*"]

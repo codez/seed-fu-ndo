@@ -7,9 +7,9 @@ module SeedFuNdo
   
   mattr_reader :recorder
   
-  # Unload seed data from files
-  # @param [Array] fixture_paths The paths to look for seed files in
-  # @param [Regexp] filter If given, only filenames matching this expression will be loaded
+  # Unload seed data from files. Main entry point for third-party libraries.
+  # [fixture_paths] The paths to look for seed files in.
+  # [filter] A regexp. If given, only filenames matching this expression will be loaded.
   def self.unseed(fixture_paths = SeedFu.fixture_paths, filter = nil)
     @@recorder = Recorder.new
     SeedFu::Runner.new(fixture_paths, filter).run

@@ -13,4 +13,7 @@ namespace :db do
 
     SeedFuNdo.unseed(fixture_paths, filter)
   end
+  
+  # alias
+  task :unseed => 'db:unseed_fu'
 end
