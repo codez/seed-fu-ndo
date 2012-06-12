@@ -3,6 +3,8 @@ module SeedFu
   # Enhanced class from Seed Fu to allow for recording and destroying seed data.
   class Seeder
     
+    attr_reader :model_class
+    
     # Record instead of inserting the data if in recording mode. 
     def seed_with_undo
       if r = SeedFuNdo.recorder
@@ -19,17 +21,19 @@ module SeedFu
     # Destroy the seed data.
     def unseed
       @model_class.transaction do
-        @data.reverse.map { |record_data| unseed_record(record_data.symbolize_keys) }
+        existing_records.reverse.each { |record| unseed_record(record) }
       end
+    end
+    
+    # List of the seeded records that exist in the database.
+    def existing_records
+      @data.map { |record_data| find_record(record_data.symbolize_keys) }.compact
     end
     
     private
     
-    def unseed_record(data)
-        record = find_record(data)
-        return if record.nil?
-
-        puts " - Remove #{@model_class} #{data.inspect}" unless @options[:quiet]
+    def unseed_record(record)
+        puts " - Remove #{record.inspect}" unless @options[:quiet]
 
         record.destroy || raise(ActiveRecord::ActiveRecordError, record.errors.full_messages.join(", ").presence)
     end

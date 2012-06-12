@@ -44,14 +44,19 @@ describe SeedFu::Seeder do
       end
     
       it "should ignore non-existing records" do
-        SeedFuNdo.recorder.unseed
+        unseed
         SeededModel.count.should == 0
       end
       
       it "should unseed existing records" do
         SeededModel.create!(:title => 'Foo')
-        SeedFuNdo.recorder.unseed
+        unseed
         SeededModel.count.should == 0
+      end
+      
+      it "should find existing records" do
+        rec = SeededModel.create!(:title => 'Foo')
+        SeedFuNdo.recorder.seeders.first.existing_records.should == [rec]
       end
     end
     
@@ -71,10 +76,14 @@ describe SeedFu::Seeder do
       it "should rollback if one record cannot be destroyed" do
         SeededModel.create!(:title => 'Foo', :fail_to_destroy => true)
         SeededModel.create!(:title => 'Bar')
-        expect { SeedFuNdo.recorder.unseed }.to raise_error(ActiveRecord::ActiveRecordError)
+        expect { unseed }.to raise_error(ActiveRecord::ActiveRecordError)
         SeededModel.count.should == 2
       end
     end
 
   end
+end
+
+def unseed
+  SeedFuNdo.recorder.seeders.reverse.each {|s| s.unseed }
 end

@@ -13,15 +13,6 @@ module SeedFuNdo
       seeders << seeder
     end
     
-    # Unseed the data of all the recorded seeders in reverse order.
-    def unseed
-      ActiveRecord::Base.transaction do 
-        seeders.reverse.each do |seeder|
-          seeder.unseed
-        end
-      end
-    end
-    
   end
   
 end
