@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seed-fu-ndo (0.0.2)
+    seed-fu-ndo (0.0.3)
       seed-fu (>= 2.2.0)
 
 GEM
